@@ -2,6 +2,7 @@ ArrayList<Gameobject> clouds = new ArrayList<Gameobject>();
 Bomb bomb;
 Plane plane;
 Man man;
+boolean keyDown = false;
 
 void setup()
 {
@@ -51,5 +52,5 @@ void drawBackground()
 
 void keyReleased()
 {
- keyDown = false;
+   keyDown = false;
 }

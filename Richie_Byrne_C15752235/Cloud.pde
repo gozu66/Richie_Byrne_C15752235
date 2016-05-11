@@ -6,6 +6,8 @@ class Cloud extends Gameobject
     super(x, y);  
     
     theta = PI + HALF_PI;
+        
+    c = (255);
             
     reset(x, y);
   }
@@ -49,7 +51,7 @@ class Cloud extends Gameobject
   
   void drawCloud()
   {
-    fill(255);
+    fill(c);
     ellipse(0, 0, 20, 20);
   }
 }

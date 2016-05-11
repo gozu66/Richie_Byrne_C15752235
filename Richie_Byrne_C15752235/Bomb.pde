@@ -1,15 +1,14 @@
-//PVector pos;
-PVector acc;
-PVector vel;
-
-float landingPoint; 
-
-float deltaTime;
-
-boolean released, keyDown = false, landed;
-
 class Bomb extends Gameobject
 {
+  PVector acc;
+  PVector vel;
+
+  float landingPoint; 
+
+  float deltaTime;
+
+  boolean released, landed;
+
   Bomb(float x, float y)
   {
     super(x, y);    
@@ -21,6 +20,8 @@ class Bomb extends Gameobject
     vel = new PVector(50, 100);
     
     deltaTime = 1.0f / frameRate;
+    
+    c = color(150, 0, 0);            //Red
   }
 
   void bombDrop()
@@ -68,7 +69,7 @@ class Bomb extends Gameobject
   
   void drawBomb()
   {
-    fill(150, 0, 0);
+    fill(c);
     rect(pos.x, pos.y, 10, 10);
   }
 

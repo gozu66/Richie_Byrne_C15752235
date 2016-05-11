@@ -12,6 +12,8 @@ class Plane extends Gameobject
 
     w = 60;
     h = 20;
+    
+    c = (150);          //grey
   }
   
   void reset(float x, float y)
@@ -50,7 +52,7 @@ class Plane extends Gameobject
   
   void drawPlane()
   {
-    fill(0);
+    fill(c);
     rect(0, 0, h, w);
   }
 }

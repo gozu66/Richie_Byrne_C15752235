@@ -2,6 +2,7 @@ class Man extends Gameobject
 { 
   PVector idlePos;
   PVector target;
+  PVector movement;
   
   Man(float x, float y)
   {
@@ -9,22 +10,30 @@ class Man extends Gameobject
     
     theta = 0;
     
-    speed = 1.0f;
+    speed = 2f;
     
     c = color(200, 50, 200);    //Purple
     
     idlePos = new PVector(x, y);
     target = new PVector();
+    movement = new PVector();
   }
 
   void update()
   {
-    move();
-    drawMan();
-    
     target = (bomb.landed) ? bomb.pos : idlePos;
+        
+    if(PVector.dist(target, pos) > 2.5)
+    {
+      movement = (PVector.sub(target, pos));
+      movement.normalize();
+      movement.mult(speed);
+      pos.add(movement);
+    }
     
-    if(PVector.dist(bomb.pos, pos) < 1)
+    move();
+    
+    if(PVector.dist(bomb.pos, pos) < 2.5)
     {
       bomb.bombCollect();
     }
@@ -32,67 +41,20 @@ class Man extends Gameobject
   
   void move()
   {
-    if(pos.x < target.x)
-      {
-        pos.x++;
-      }
-      if(pos.x > target.x)
-      {
-        pos.x--;
-      }
-      if(pos.y > target.y)
-      {
-        pos.y--;
-      }
-      else if(pos.y < target.y)
-      {
-        pos.y++;
-      }
-    //if(bomb.landed)
-    //{
-    //  if(pos.x < bomb.pos.x)
-    //  {
-    //    pos.x++;
-    //  }
-    //  if(pos.x > bomb.pos.x)
-    //  {
-    //    pos.x--;
-    //  }
-    //  if(pos.y > bomb.pos.y)
-    //  {
-    //    pos.y--;
-    //  }
-    //  else if(pos.y < bomb.pos.y)
-    //  {
-    //    pos.y++;
-    //  }
-    //}  
-    //else
-    //{
-    //  if(pos.x < idlePos.x)
-    //  {
-    //    pos.x++;
-    //  }
-    //  if(pos.x > idlePos.x)
-    //  {
-    //    pos.x--;
-    //  }
-    //  if(pos.y > idlePos.y)
-    //  {
-    //    pos.y--;
-    //  }
-    //  else if(pos.y < idlePos.y)
-    //  {
-    //    pos.y++;
-    //  }
-    //}
+    pushMatrix();  
+   
+    translate(pos.x, pos.y);
+    drawMan();
+    
+    popMatrix();   
+      
   }
   
   void drawMan()
   {
     rectMode(CENTER);
     fill(c);
-    rect(pos.x, pos.y, 20, 50);
+    rect(0, 0, 20, 50);
     rectMode(CORNER);
   }
 }
