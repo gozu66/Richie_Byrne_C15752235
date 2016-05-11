@@ -1,4 +1,5 @@
 ArrayList<Gameobject> clouds = new ArrayList<Gameobject>();
+Plane plane;
 
 void setup()
 {
@@ -13,6 +14,8 @@ void setup()
     
     i++;
   }
+  
+  plane = new Plane(-20, 50);
 }
 
 void draw()
@@ -24,6 +27,8 @@ void draw()
     Gameobject cloud = clouds.get(i);
     cloud.update();
   }
+  
+  plane.update();
 }
 
 void drawBackground()
