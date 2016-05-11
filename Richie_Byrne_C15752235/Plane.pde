@@ -5,11 +5,7 @@ class Plane extends Gameobject
     super(x, y);  
     
     theta = HALF_PI;
-        
-    forward = new PVector();
-    
-    pos = new PVector(x, y);
-    
+            
     speed = 3;
     
     reset(x, y);

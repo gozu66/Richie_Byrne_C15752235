@@ -1,6 +1,7 @@
 ArrayList<Gameobject> clouds = new ArrayList<Gameobject>();
 Bomb bomb;
 Plane plane;
+Man man;
 
 void setup()
 {
@@ -12,13 +13,15 @@ void setup()
     float rndX = width + random(width);
     float rndY = random(height * 0.5f);
     clouds.add(new Cloud(rndX, rndY));
-    
     i++;
   }
   
   plane = new Plane(-20, 50);  
   
   bomb = new Bomb(0, 0);
+  
+  PVector manSpot = new PVector(width * 0.1f, height * 0.9f);
+  man = new Man(manSpot.x, manSpot.y);
 }
 
 void draw()
@@ -35,28 +38,18 @@ void draw()
   
   bomb.update();
   
-  if(keyPressed && key == ' ' && !keyDown)
-  {
-    //Drop bomb
-    bomb.pos.x = plane.pos.x;
-    bomb.pos.y = plane.pos.y;
-    bomb.bombDropAndCollect();
-    keyDown = true;
-  }
+  man.update();  
 }
-
-boolean keyDown = false;
 
 void drawBackground()
 {
   noStroke();
-  background(100, 100, 255);
-  fill(100, 255, 150);
+  background(100, 200, 255);
+  fill(50, 255, 50);
   rect(0, height * 0.5f, width, height * 0.5f);
 }
 
-
 void keyReleased()
 {
-  keyDown = false;
+ keyDown = false;
 }

@@ -6,9 +6,7 @@ class Cloud extends Gameobject
     super(x, y);  
     
     theta = PI + HALF_PI;
-        
-    forward = new PVector();
-    
+            
     reset(x, y);
   }
   
