@@ -1,48 +1,51 @@
-ArrayList<Gameobject> clouds = new ArrayList<Gameobject>();
-Bomb bomb;
-Plane plane;
-Man man;
-boolean keyDown = false;
+ArrayList<Gameobject> clouds = new ArrayList<Gameobject>();            //Gameobject arraylist of clouds [polymorphism]
+Bomb bomb;                                                             //bomb object
+Plane plane;                                                           //Plane object
+Man man;                                                               //man object
+
+boolean keyDown = false;                                               //bool to lock out dropping bomb while bomb already being dropped
 
 void setup()
 {
   size(500, 500);
   
   int i = 0;
-  while(i < 5)
+  while(i < 5)                                                                        //While loop for initialising cloud arraylist
   {
-    float rndX = width + random(width);
-    float rndY = random(height * 0.5f);
-    clouds.add(new Cloud(rndX, rndY));
+    float cloudScreenOffset = 160;                                                     //offset to keep clouds in sky and not offscreen
+    float rndX = width + random(width);                                                //random x and y for cloud placement
+    float rndY = random(cloudScreenOffset, (height * 0.5f) - cloudScreenOffset);
+    clouds.add(new Cloud(rndX, rndY));                                                 //adding cloud to array list
     i++;
   }
   
-  plane = new Plane(-20, 50);  
+  PVector planeStartPos = new PVector(-20, 50);                            
+  plane = new Plane(planeStartPos.x, planeStartPos.y);              //creating plane at offscreen position
   
-  bomb = new Bomb(0, 0);
+  bomb = new Bomb(0, 0);                                            //declaring the bomb
   
   PVector manSpot = new PVector(width * 0.1f, height * 0.9f);
-  man = new Man(manSpot.x, manSpot.y);
+  man = new Man(manSpot.x, manSpot.y);                              //creating man at default position
 }
 
 void draw()
-{
-  drawBackground(); 
+{  
+  drawBackground();                        //draw the sky and grass
   
-  for(int i = 0; i < clouds.size(); i++)
+  for(int i = 0; i < clouds.size(); i++)   //loop through cloud arraylist
   {
-    Gameobject cloud = clouds.get(i);
-    cloud.update();
-  }
+    Gameobject cloud = clouds.get(i);      //clouds as gameobjects [polymorphism]
+    cloud.update();                        //update clouds
+  } 
+
+  plane.update();   //update plane
   
-  plane.update();
+  bomb.update();    //update bomb
   
-  bomb.update();
-  
-  man.update();  
+  man.update();     //update man
 }
 
-void drawBackground()
+void drawBackground()          //draw the sky and grass
 {
   noStroke();
   background(100, 200, 255);
@@ -52,5 +55,5 @@ void drawBackground()
 
 void keyReleased()
 {
-   keyDown = false;
+   keyDown = false;    //bool to lock out dropping bomb while bomb already being dropped
 }

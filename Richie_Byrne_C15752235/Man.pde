@@ -17,6 +17,11 @@ class Man extends Gameobject
     idlePos = new PVector(x, y);
     target = new PVector();
     movement = new PVector();
+    
+    w = 20;
+    h = 30;
+    halfW = w * 0.5f;
+    halfH = h * 0.5f;
   }
 
   void update()
@@ -54,7 +59,12 @@ class Man extends Gameobject
   {
     rectMode(CENTER);
     fill(c);
-    rect(0, 0, 20, 50);
+    rect(0, 0, w, h);
+    rect(-halfW, h, halfW / 2, h);
+    rect(halfW, h, halfW / 2, h);
+    rect(-halfW - 5, -halfH + 10, halfW / 2, halfH);
+    rect(halfW + 5, -halfH + 10, halfW / 2, halfH);
+    ellipse(0, -h, h, w);
     rectMode(CORNER);
   }
 }

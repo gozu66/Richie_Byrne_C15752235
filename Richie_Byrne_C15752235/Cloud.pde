@@ -7,13 +7,19 @@ class Cloud extends Gameobject
     
     theta = PI + HALF_PI;
         
-    c = (255);
+    c = 255;
             
     reset(x, y);
   }
   
   void reset(float x, float y)
   {
+    w = random(40, 70);
+    h = random(40, 70);
+    
+    halfW = w * 0.5f;
+    halfH = h * 0.5f;
+    
     speed = random(1, 6);
     pos = new PVector(x, y);
   }
@@ -26,7 +32,7 @@ class Cloud extends Gameobject
     forward.mult(speed);
     pos.add(forward);
     
-    if(pos.x < 0)
+    if(pos.x < -w)
     {
       float rndX = width + random(width);
       float rndY = random(height * 0.5f);
@@ -52,6 +58,8 @@ class Cloud extends Gameobject
   void drawCloud()
   {
     fill(c);
-    ellipse(0, 0, 20, 20);
+    ellipse(0, 0, w, h);
+    ellipse(0, 20, halfW, halfH);
+    ellipse(0, -20, halfW, halfH);
   }
 }

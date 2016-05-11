@@ -53,6 +53,15 @@ class Plane extends Gameobject
   void drawPlane()
   {
     fill(c);
-    rect(0, 0, h, w);
+    rectMode(CENTER);
+    //stroke(0);
+    rect(0, -10, w, h);
+    rect(-10, +40, 25, h);
+    rect(0, 0, h, w * 1.5f);
+    fill(0);
+    for(int i = 30; i > -40; i-=10)
+    {
+      rect(0, i, 5, 5);
+    }
   }
 }

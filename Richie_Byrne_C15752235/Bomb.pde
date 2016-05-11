@@ -1,23 +1,23 @@
-class Bomb extends Gameobject
+class Bomb extends Gameobject    //bomb class
 {
-  PVector acc;
-  PVector vel;
+  PVector acc;                    //acceleration
+  PVector vel;                    //velocity
 
-  float landingPoint; 
+  float landingPoint;             //y value for where bomb will land
 
-  float deltaTime;
+  float deltaTime;                //time delta
 
-  boolean released, landed;
+  boolean released, landed;       //bools to keep track of bomb state
 
-  Bomb(float x, float y)
+  Bomb(float x, float y)          //bomb contstructor
   {
-    super(x, y);    
+    super(x, y);                  //super constructor
     
     released = false;
     
     acc = new PVector(0, 9.8f);
     
-    vel = new PVector(50, 100);
+    vel = new PVector(0, 100);
     
     deltaTime = 1.0f / frameRate;
     
@@ -26,8 +26,8 @@ class Bomb extends Gameobject
 
   void bombDrop()
   {
-    landingPoint = random(height * 0.5f, height);    
-    vel = new PVector(50, 100);
+    landingPoint = random(height * 0.5f, height); 
+    vel = new PVector(0, 100);
     released = true; 
   }
   
